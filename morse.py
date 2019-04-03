@@ -36,10 +36,17 @@ class Morse:
         '--..': 'Z'
     }
 
-    def decode(self, message):
-        if message == "":
-            return ""
 
-        symbols = message.split(" ")
+
+    def decode(self, message):
+            if message == "":
+                return ""
+
+            words = message.split(" / ")
+            decoded_words = [self.decode_word(word) for word in words]
+            return ' '.join(decoded_words)
+
+    def decode_word(self, word):
+        symbols = word.split(" ")
         letters = [self.ALPHABET[s] for s in symbols]
         return ''.join(letters)
